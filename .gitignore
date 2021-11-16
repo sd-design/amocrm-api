@@ -49,4 +49,6 @@
 **/Entity/*~
 
 # Embedded web-server pid file
+/.idea
 /.web-server-pid
+.env

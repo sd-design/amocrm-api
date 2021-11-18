@@ -1,5 +1,6 @@
 <?php
 
+
 use AmoCRM\Collections\ContactsCollection;
 use AmoCRM\Collections\CustomFieldsValuesCollection;
 use AmoCRM\Collections\Leads\LeadsCollection;
@@ -23,7 +24,7 @@ include_once __DIR__ . '/bootstrap.php';
 
 $accessToken = getToken();
 $baseDomain = 'deaqua.amocrm.ru';
-
+$lead_id = $_GET['id'];
 $apiClient->setAccessToken($accessToken)
     ->setAccountBaseDomain($accessToken->getValues()['baseDomain'])
     ->onAccessTokenRefresh(
@@ -38,23 +39,14 @@ $apiClient->setAccessToken($accessToken)
             );
         });
 
-//$leadsService = $apiClient->leads();
-//try {
-//    $lead = $apiClient->leads()->getOne(7521281, [LeadModel::CONTACTS, LeadModel::CATALOG_ELEMENTS]);
-//} catch (AmoCRMApiException $e) {
-//    printError($e);
-//    die;
-//}
-//var_dump($lead->name);
-
+$leadsService = $apiClient->leads();
 try {
-    $leads = $apiClient->leads()->get();
+    $lead = $apiClient->leads()->getOne($lead_id, [LeadModel::CONTACTS, LeadModel::CATALOG_ELEMENTS]);
 } catch (AmoCRMApiException $e) {
     printError($e);
     die;
 }
-foreach ($leads as $lead) {
-    $fields = $lead->toArray();
-    var_dump($fields['id']);
-}
+
+$fields = $lead->toArray();
+var_dump($fields);
 

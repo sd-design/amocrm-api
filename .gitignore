@@ -52,3 +52,4 @@
 /.idea
 /.web-server-pid
 .env
+/tmp/token_info.json

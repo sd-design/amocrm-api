@@ -55,6 +55,6 @@ try {
 }
 foreach ($leads as $lead) {
     $fields = $lead->toArray();
-    var_dump($fields['id']);
+    var_dump($fields['name']);
 }
 
